@@ -22,7 +22,7 @@ program
         int userMalice = 0;
     endvar
     
-    ChooseAvatar
+    ChooseAvatar();
     ChooseNameAvatar(name);
     ChooseMalice(userMalice);
     DistributeMalice(userMalice, name);
