@@ -121,14 +121,17 @@ function Checkvowels(vowelsValid by reference, name by value)
     for int i = 0 to name.Lenght
         i = i+1;
         
-        if(ToLower(name[i]) == Vowels[0] && 
-        ToLower(name[i]) == Vowels[1] && 
-        ToLower(name[i]) == Vowels[2] && 
-        ToLower(name[i]) == Vowels[3] && 
+        if(ToLower(name[i]) == Vowels[0] || 
+        ToLower(name[i]) == Vowels[1] || 
+        ToLower(name[i]) == Vowels[2] || 
+        ToLower(name[i]) == Vowels[3] ||  
         ToLower(name[i]) == Vowels[4])
-            vowelsValid = true;
+            count++;
         endif
-            else vowelsValid = false;
     endfor
+	
+	if(count >= 2)
+		vowelsValid = true;
+	endif
 endfunction
 ```
