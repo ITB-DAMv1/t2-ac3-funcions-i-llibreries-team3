@@ -102,4 +102,21 @@ class ActThreeGroupThreeCsMain
         }
         return false;
     }
+    public static void CheckVowels(bool twoVowels, ref string userName, ref int vowels)
+    {
+        foreach (char c in userName.ToLower())
+        {
+            if (c == 'a')
+                vowels = vowels + 1;
+            else if (c == 'e')
+                vowels = vowels + 1;
+            else if (c == 'i')
+                vowels = vowels + 1;
+            else if (c == 'o')
+                vowels = vowels + 1;
+            else if (c == 'u')
+                vowels = vowels + 1;
+        }
+        if (vowels >= 2) twoVowels = true;
+    }
 }
