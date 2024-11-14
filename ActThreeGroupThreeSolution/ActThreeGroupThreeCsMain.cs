@@ -52,9 +52,9 @@ class ActThreeGroupThreeCsMain
         CheckVowels(ref twoVowels);
 
         if (twoVowels == true) ConvertToMagicDust(malice, ref personDust, ref avatarMalice);
-        else DividirMaldat(ref personMalice, ref avatarMalice);
+        else DividirMaldat(ref personMalice, ref avatarMalice, in malice);
     }
-    public static int DividirMaldat(ref int personaMalice, ref int avatarMalice, in int malice)
+    public static void DividirMaldat(ref int personaMalice, ref int avatarMalice, in int malice)
 
     {
 
