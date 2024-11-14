@@ -49,10 +49,12 @@ class ActThreeGroupThreeCsMain
             malice = int.Parse(Console.ReadLine());
         }
         //TODO
-        CheckVowels(ref twoVowels);
+        CheckVowels(ref twoVowels, ref userName, ref vowels);
 
         if (twoVowels == true) ConvertToMagicDust(malice, ref personDust, ref avatarMalice);
         else DividirMaldat(ref personMalice, ref avatarMalice, in malice);
+
+        Console.WriteLine($"Es repart {personDust} i et queda {avatarMalice}");
     }
     public static void DividirMaldat(ref int personaMalice, ref int avatarMalice, in int malice)
 
@@ -110,7 +112,7 @@ class ActThreeGroupThreeCsMain
         }
         return false;
     }
-    public static void CheckVowels(bool twoVowels, ref string userName, ref int vowels)
+    public static void CheckVowels( ref bool twoVowels, ref string userName, ref int vowels)
     {
         foreach (char c in userName.ToLower())
         {
