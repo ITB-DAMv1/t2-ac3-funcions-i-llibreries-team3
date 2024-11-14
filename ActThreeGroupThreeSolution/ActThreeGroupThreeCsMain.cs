@@ -14,6 +14,7 @@ class ActThreeGroupThreeCsMain
         const string InsertCharacterNumTxt = "Insereix el numero de selecció: [1-4]";
         const string InsertCharacterUsernameTxt = "Insereix el nom del personatje: llargada[2-25]";
         const string InsertEvilTxt = "Insereix el nivell de maldat: [1000-50000]";
+        const string Error = "Valor no valid";
 
         string userName = "";
         int characterNum = 0;
@@ -23,19 +24,22 @@ class ActThreeGroupThreeCsMain
         int personMalice = 0;
 
         int vowels = 0;
-        bool characterSpecial = false;
         bool twoVowels = false;
 
         Console.WriteLine(InsertCharacterNumTxt);
 
-        while (!(characterNum >= MaxCharNum && characterNum <= MinCharNum))
+        while (!(characterNum <= MaxCharNum && characterNum >= MinCharNum))//Range in original pseudocode was (!(characterNum >= MaxCharNum && characterNum <= MinCharNum))
         {
-            characterNum = int.Parse(Console.ReadLine());
+            if (!(int.TryParse(Console.ReadLine(), out characterNum)))
+            {
+                characterNum = 0;
+                Console.WriteLine(Error);
+            }
         }
 
         Console.WriteLine(InsertCharacterUsernameTxt);
 
-        while (!(userName.Length <= MinCharUser && userName.Length >= MaxCharUser))
+        while (!(userName.Length >= MinCharUser && userName.Length <= MaxCharUser))//Range in original pseudocode was (!(userName.Length <= MinCharUser && userName.Length >= MaxCharUser))
         {
             userName = Console.ReadLine();
 
@@ -44,24 +48,34 @@ class ActThreeGroupThreeCsMain
 
         Console.WriteLine(InsertEvilTxt);
 
-        while (!(malice >= MinEvil && malice <= MaxEvil))
+        while (!(malice <= MinEvil && malice >= MaxEvil))//Range in original pseudocode was (!(malice >= MinEvil && malice <= MaxEvil))
         {
-            malice = int.Parse(Console.ReadLine());
+            if (!(int.TryParse(Console.ReadLine(), out malice)))
+            {
+                malice = 0;
+                Console.WriteLine(Error);
+            }
         }
         //TODO
         CheckVowels(ref twoVowels, ref userName, ref vowels);
 
-        if (twoVowels == true) ConvertToMagicDust(malice, ref personDust, ref avatarMalice);
-        else DividirMaldat(ref personMalice, ref avatarMalice, in malice);
-
-        Console.WriteLine($"Es repart {personDust} i et queda {avatarMalice}");
+        if (twoVowels == true)
+        {
+            ConvertToMagicDust(malice, ref personDust, ref avatarMalice);
+            Console.WriteLine($"Es repart {personDust} per cada membre de l'equip i et queda un nivell de maldad de {avatarMalice}"); //Original pseudocode didn't print
+        }
+        else
+        {
+            DividirMaldat(ref personMalice, ref avatarMalice, in malice);
+            Console.WriteLine($"Es repart {personMalice} per cada membre de l'equip i et queda un nivell de maldad de {avatarMalice}"); //Original pseudocode didn't print
+        }
     }
-    public static void DividirMaldat(ref int personaMalice, ref int avatarMalice, in int malice)
+    public static void DividirMaldat(ref int personMalice, ref int avatarMalice, in int malice)
 
     {
 
         avatarMalice = malice / 10 * 8;
-        personaMalice = malice / 20;
+        personMalice = malice / 20;
 
     }
 
