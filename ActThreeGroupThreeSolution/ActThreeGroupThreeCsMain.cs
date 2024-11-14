@@ -51,7 +51,7 @@ class ActThreeGroupThreeCsMain
 
         CheckVowels(ref twoVowels);
 
-        if (twoVowels == true) ConvertirAPolsMagic();
+        if (twoVowels == true) ConvertToMagicDust(malice, ref personDust, ref avatarMalice);
         else DividirMaldat();
     }
 
@@ -101,5 +101,13 @@ class ActThreeGroupThreeCsMain
             }
         }
         return false;
+    }
+
+    static void ConvertToMagicDust(int malice, ref int personDust, ref int avatarMalice)
+    {
+
+        avatarMalice = malice % 4;
+
+        personDust = malice / 4;
     }
 }
