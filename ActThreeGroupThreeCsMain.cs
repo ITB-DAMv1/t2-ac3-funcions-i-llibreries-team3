@@ -49,9 +49,9 @@ class ActThreeGroupThreeCsMain
             malice = int.Parse(Console.ReadLine());
         }
 
-        CheckVocals(twoVowels);
+        CheckVowels(ref twoVowels);
 
-        if (twoVowels = true) ConvertirAPolsMagic();
+        if (twoVowels == true) ConvertirAPolsMagic();
         else DividirMaldat();
     }
 
