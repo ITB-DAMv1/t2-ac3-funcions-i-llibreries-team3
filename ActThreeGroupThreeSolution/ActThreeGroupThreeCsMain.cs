@@ -48,11 +48,19 @@ class ActThreeGroupThreeCsMain
         {
             malice = int.Parse(Console.ReadLine());
         }
-
+        //TODO
         CheckVowels(ref twoVowels);
 
         if (twoVowels == true) ConvertToMagicDust(malice, ref personDust, ref avatarMalice);
-        else DividirMaldat();
+        else DividirMaldat(ref personMalice, ref avatarMalice);
+    }
+    public static int DividirMaldat(ref int personaMalice, ref int avatarMalice, in int malice)
+
+    {
+
+        avatarMalice = malice / 10 * 8;
+        personaMalice = malice / 20;
+
     }
 
     static public bool CharacterSpecial(string userName)
