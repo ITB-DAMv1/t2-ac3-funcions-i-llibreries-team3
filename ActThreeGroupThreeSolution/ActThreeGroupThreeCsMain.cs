@@ -5,6 +5,7 @@ class ActThreeGroupThreeCsMain
 {
     static void Main(string[] args)
     {
+        //constantss and variables names where mixed with enaglish and catalan
         const int MinCharNum = 1;
         const int MaxCharNum = 4;
         const int MinCharUser = 2;
