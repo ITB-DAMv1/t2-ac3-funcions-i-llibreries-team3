@@ -20,7 +20,6 @@ namespace MyProgram
             string userNameArray = "";   // antes era string[]
             int userAvatar = 0;
             int userMaldat = 0;
-            bool flag = false;
             int polsMagica = 0;
             int numVocales = 0;
             char[] vocalesArray = new char[] { 'A', 'E', 'I', 'O', 'U' };   // antes estaba como constante
@@ -29,43 +28,29 @@ namespace MyProgram
             AvatarSelector(ref userAvatar);
             NameSelector(ref userName, userNameArray);
             MaldatSelector(ref userMaldat);
-            GameCore(userNameArray, vocalesArray, numVocales, flag, polsMagica, userMaldat);  // se pasan los parámetros
+            GameCore(userNameArray, vocalesArray, numVocales, polsMagica, userMaldat);  // se pasan los parámetros
            
             
         }
         public static void MaldatSelector(ref int userMaldat)
         {
-            bool flag = true;
             int userNumber = 0;
             Console.WriteLine(MsgMaldat);
-            
-            do
-            {
-                do
-                {
-                    if (int.TryParse(Console.ReadLine(), out userNumber)) flag = false;
-                } while (flag == true);
-            } while (CheckRange(MaxMalice, MinMalice, userNumber));
+
+            while (int.TryParse(Console.ReadLine(), out userNumber) && ValidNumber(MaxAvatar, MinAvatar, userNumber)) ;
         }
 
-        public static bool CheckRange(int maxRange, int minRange, int userNum)
+        public static bool ValidNumber(int maxRange, int minRange, int userNum)
         {
             return userNum <= maxRange && userNum >= minRange;
         }
 
         public static void AvatarSelector(ref int userAvatar)
         {
-            bool flag = true;
             int userNumber = 0;
             Console.WriteLine(MsgUserAvatar);
 
-            do
-            {
-                do
-                {
-                    if (int.TryParse(Console.ReadLine(), out userNumber)) flag = false;
-                } while (flag == true);
-            } while (CheckRange(MaxAvatar, MinAvatar, userNumber));
+            while (int.TryParse(Console.ReadLine(), out userNumber) && ValidNumber(MaxAvatar, MinAvatar, userNumber));
         }
         public static void NameSelector(ref string userName, string userNameArray)
         {
@@ -83,7 +68,7 @@ namespace MyProgram
             userNameArray = userName;
             //havien igualat al revès
         }
-        public static void GameCore(string userNameArray, char[] vocalesArray, int numVocales, bool flag, int polsMagica, int userMaldat)   // se pasan los parámetros
+        public static void GameCore(string userNameArray, char[] vocalesArray, int numVocales, int polsMagica, int userMaldat)   // se pasan los parámetros
         {
             for (int i = 0; i < userNameArray.Length; i++)
             {
@@ -97,11 +82,6 @@ namespace MyProgram
             }
 
             if (numVocales >= 2)
-            {
-                flag = true;
-            }
-
-            if (flag)
             {
                 polsMagica = userMaldat / 4;
                 
