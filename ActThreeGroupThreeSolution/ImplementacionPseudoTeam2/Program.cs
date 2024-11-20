@@ -37,7 +37,7 @@ namespace MyProgram
             int userNumber = 0;
             Console.WriteLine(MsgUserAvatar);
 
-            while (int.TryParse(Console.ReadLine(), out userNumber) && ValidNumber(MaxAvatar, MinAvatar, userNumber)) ;
+            while (int.TryParse(Console.ReadLine(), out userNumber) && CheckNumber(MaxAvatar, MinAvatar, userNumber)) ;
         }
 
         public static string InputName()
@@ -106,12 +106,12 @@ namespace MyProgram
                     userName[i] == '6' ||
                     userName[i] == '7' ||
                     userName[i] == '8' ||
-                    userName[i] == '9')) ;
+                    userName[i] == '9')) return true;
             }
             return false;
         }
 
-        private static bool CheckUserNameLenght(string userName)
+        public static bool CheckUserNameLenght(string userName)
         {
             return userName.Length >= 2 && userName.Length <= 25;
         }
@@ -121,10 +121,10 @@ namespace MyProgram
             int userNumber = 0;
             Console.WriteLine(MsgMaldat);
 
-            while (int.TryParse(Console.ReadLine(), out userNumber) && ValidNumber(MaxAvatar, MinAvatar, userNumber)) ;
+            while (int.TryParse(Console.ReadLine(), out userNumber) && CheckNumber(MaxAvatar, MinAvatar, userNumber)) ;
         }
 
-        public static bool ValidNumber(int maxRange, int minRange, int userNum)
+        public static bool CheckNumber(int maxRange, int minRange, int userNum)
         {
             return userNum <= maxRange && userNum >= minRange;
         }
@@ -137,11 +137,12 @@ namespace MyProgram
         
         public static void CountVowels(string userNameArray, char[] vocalesArray, ref int numVocales)
         {
+            userNameArray = userNameArray.ToUpper();
             for (int i = 0; i < userNameArray.Length; i++)
             {
                 for (int j = 0; j < vocalesArray.Length; j++) // he cambiado int n por int j
                 {
-                    if (userNameArray[i] == vocalesArray[j])
+                    if ((userNameArray[i]) == vocalesArray[j])
                     {
                         numVocales = numVocales + 1;
                     }
