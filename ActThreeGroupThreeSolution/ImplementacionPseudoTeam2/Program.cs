@@ -30,20 +30,6 @@ namespace MyProgram
             userName = InputName();
             MaldatSelector(ref userMaldat);
             GameCore(userNameArray, vocalesArray,ref numVocales,ref polsMagica, userMaldat);  // se pasan los parámetros
-           
-            
-        }
-        public static void MaldatSelector(ref int userMaldat)
-        {
-            int userNumber = 0;
-            Console.WriteLine(MsgMaldat);
-
-            while (int.TryParse(Console.ReadLine(), out userNumber) && ValidNumber(MaxAvatar, MinAvatar, userNumber)) ;
-        }
-
-        public static bool ValidNumber(int maxRange, int minRange, int userNum)
-        {
-            return userNum <= maxRange && userNum >= minRange;
         }
 
         public static void AvatarSelector(ref int userAvatar)
@@ -51,8 +37,9 @@ namespace MyProgram
             int userNumber = 0;
             Console.WriteLine(MsgUserAvatar);
 
-            while (int.TryParse(Console.ReadLine(), out userNumber) && ValidNumber(MaxAvatar, MinAvatar, userNumber));
+            while (int.TryParse(Console.ReadLine(), out userNumber) && ValidNumber(MaxAvatar, MinAvatar, userNumber)) ;
         }
+
         public static string InputName()
         {
             string userName = "";
@@ -128,7 +115,20 @@ namespace MyProgram
         {
             return userName.Length >= 2 && userName.Length <= 25;
         }
-        
+
+        public static void MaldatSelector(ref int userMaldat)
+        {
+            int userNumber = 0;
+            Console.WriteLine(MsgMaldat);
+
+            while (int.TryParse(Console.ReadLine(), out userNumber) && ValidNumber(MaxAvatar, MinAvatar, userNumber)) ;
+        }
+
+        public static bool ValidNumber(int maxRange, int minRange, int userNum)
+        {
+            return userNum <= maxRange && userNum >= minRange;
+        }
+
         public static void GameCore(string userNameArray, char[] vocalesArray, ref int numVocales, ref int polsMagica, int userMaldat)   // se pasan los parámetros
         {
             CountVowels(userNameArray, vocalesArray, ref numVocales);
