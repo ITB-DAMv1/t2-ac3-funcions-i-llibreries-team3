@@ -3,15 +3,18 @@ namespace MyProgram
 {
     public class Program
     {
+        // const
+        const string MsgErrorDades = "Les dades han sigut introduïdes incorrectament";
+        const string MsgUserAvatar = "Tria el avatar!Has d'introduir un nombre entre 1 i 4.";
+        const string MsgUserName = "Tria un nom, sense números, que com a mínim tingui 2 lletres i com màxim 25.";
+        const string MsgMaldat = "Tria el teu nivell de maldat!Has d'introduir un nombre entre 1000 i 50000.";
+        const string MaldatInvalid = "El nivel de maldat no està entre 1000 i 50000";
+        const int MaxMalice = 50000;
+        const int MinMalice = 1000;
+        const int MaxAvatar = 4;
+        const int MinAvatar = 1;
         public static void Main()
         {
-            // const 
-            const string MsgErrorDades = "Les dades han sigut introduïdes incorrectament";
-            const string MsgUserAvatar = "Tria el avatar!Has d'introduir un nombre entre 1 i 4.";
-            const string MsgUserName = "Tria un nom, sense números, que com a mínim tingui 2 lletres i com màxim 25.";
-            const string MsgMaldat = "Tria el teu nivell de maldat!Has d'introduir un nombre entre 1000 i 50000.";
-            const string MaldatInvalid = "El nivel de maldat no està entre 1000 i 50000";
-
             // var
             string userName = "";
             string userNameArray = "";   // antes era string[]
@@ -23,36 +26,48 @@ namespace MyProgram
             char[] vocalesArray = new char[] { 'A', 'E', 'I', 'O', 'U' };   // antes estaba como constante
 
             // main
-            AvatarSelector(ref userAvatar, MsgUserAvatar);
-            NameSelector(MsgUserName, ref userName, MsgErrorDades, userNameArray);
-            MaldatSelector(ref userMaldat, MsgMaldat, MaldatInvalid);
+            AvatarSelector(ref userAvatar);
+            NameSelector(ref userName, userNameArray);
+            MaldatSelector(ref userMaldat);
             GameCore(userNameArray, vocalesArray, numVocales, flag, polsMagica, userMaldat);  // se pasan los parámetros
            
             
         }
-        public static void MaldatSelector(ref int userMaldat, string MsgMaldat, string MaldatInvalid)
+        public static void MaldatSelector(ref int userMaldat)
         {
+            bool flag = true;
+            int userNumber = 0;
             Console.WriteLine(MsgMaldat);
-            userMaldat = int.Parse(Console.ReadLine());
-
-
-            while (!((userMaldat < 50000) && (userMaldat > 1000)))
+            
+            do
             {
-                Console.WriteLine(MaldatInvalid);
-                userMaldat = int.Parse(Console.ReadLine());
-            }
+                do
+                {
+                    if (int.TryParse(Console.ReadLine(), out userNumber)) flag = false;
+                } while (flag == true);
+            } while (CheckRange(MaxMalice, MinMalice, userNumber));
         }
-        public static void AvatarSelector(ref int userAvatar, string MsgUserAvatar)
+
+        public static bool CheckRange(int maxRange, int minRange, int userNum)
         {
+            return userNum <= maxRange && userNum >= minRange;
+        }
+
+        public static void AvatarSelector(ref int userAvatar)
+        {
+            bool flag = true;
+            int userNumber = 0;
             Console.WriteLine(MsgUserAvatar);
 
-            //añadidos parentesis externos para que funcione while !(userAvatar >= 1 && userAvatar <= 4)
-            while (!(userAvatar >= 1 && userAvatar <= 4))
+            do
             {
-                userAvatar = int.Parse(Console.ReadLine());
-            }
+                do
+                {
+                    if (int.TryParse(Console.ReadLine(), out userNumber)) flag = false;
+                } while (flag == true);
+            } while (CheckRange(MaxAvatar, MinAvatar, userNumber));
         }
-        public static void NameSelector(string MsgUserName, ref string userName, string MsgErrorDades, string userNameArray)
+        public static void NameSelector(ref string userName, string userNameArray)
         {
             //Les variables estaven declarades al demanar la funció en comptes d'en la pròpia funció.
             Console.WriteLine(MsgUserName);
