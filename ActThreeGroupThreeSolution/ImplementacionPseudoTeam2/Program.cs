@@ -28,7 +28,7 @@ namespace MyProgram
             AvatarSelector(ref userAvatar);
             NameSelector(ref userName, userNameArray);
             MaldatSelector(ref userMaldat);
-            GameCore(userNameArray, vocalesArray, numVocales, polsMagica, userMaldat);  // se pasan los parámetros
+            GameCore(userNameArray, vocalesArray,ref numVocales,ref polsMagica, userMaldat);  // se pasan los parámetros
            
             
         }
@@ -68,7 +68,12 @@ namespace MyProgram
             userNameArray = userName;
             //havien igualat al revès
         }
-        public static void GameCore(string userNameArray, char[] vocalesArray, int numVocales, int polsMagica, int userMaldat)   // se pasan los parámetros
+        public static void GameCore(string userNameArray, char[] vocalesArray, ref int numVocales, ref int polsMagica, int userMaldat)   // se pasan los parámetros
+        {
+            CountVowels(userNameArray, vocalesArray, ref numVocales);
+            DistributeDust(ref polsMagica, numVocales, userMaldat);
+        }
+        public static void CountVowels(string userNameArray, char[] vocalesArray, ref int numVocales)
         {
             for (int i = 0; i < userNameArray.Length; i++)
             {
@@ -80,16 +85,16 @@ namespace MyProgram
                     }
                 }
             }
-
+        }
+        public static void DistributeDust(ref int polsMagica, int numVocales, int userMaldat)
+        {
             if (numVocales >= 2)
             {
                 polsMagica = userMaldat / 4;
-                
             }
             else
             {
                 polsMagica = ((userMaldat * 5) / 100) / 4;
-             
             }
         }
     }
